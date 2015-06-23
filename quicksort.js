@@ -1,7 +1,17 @@
 var quickSort = function(arr){
+
+  if(!(Array.isArray(arr))){
+    return false;
+  }
+
+  if(arr.length <= 1){
+    return arr;
+  }
+
   var pivot = arr.splice(0,1);
   var left = [];
   var right = [];
+
 
   for(var i = 0; i < arr.length; i++){
     if(arr[i] < pivot){
