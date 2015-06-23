@@ -2,7 +2,7 @@ var chai = require('chai');
 var should = chai.should();
 var expect = chai.expect;
 
-var quickSort = require('../quicksort.js');
+var quickSort = require('../lib/quicksort.js');
 
 describe('Quick Sort', function () {
 
@@ -10,8 +10,9 @@ describe('Quick Sort', function () {
       quickSort.should.be.a.function;
     });
 
-    it('Should return false', function () {
+    it('Should return false if input is not an array', function () {
       var answer = quickSort(123);
+      var answer = quickSort({});
       answer.should.be.false;
 
     });
@@ -20,6 +21,5 @@ describe('Quick Sort', function () {
       var answer = quickSort([3,2,1]);
       answer.should.eql([1,2,3]);
     });
-
 
 });

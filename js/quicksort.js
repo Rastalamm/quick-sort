@@ -33,5 +33,3 @@ var quickSort = function(arr){
   return left.concat(pivot, right);
 
 }
-
-module.exports = quickSort;
