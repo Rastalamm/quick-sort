@@ -16,9 +16,14 @@ var quickSortingApp = (function(){
       alert('I need to be big number!')
     }
 
+
     _randomArray(Number(document.getElementById('numbers_to_sort').value))
 
     _display(arrayInput);
+// debugger;
+    _quickSort(arrayInput);
+
+    displayQueue(queuedUp);
 
     // setInterval(function(){
     //   _quickSort(arrayInput);
@@ -49,12 +54,11 @@ var quickSortingApp = (function(){
       aBox.setAttribute('class', 'a_box');
       randomColor = Math.floor(Math.random() * (colorArrayLength + 1))
       aBox.style.backgroundColor = colorArray[randomColor];
-      aBox.style.height = sortedArr[i] + 'px';
+      aBox.style.height = (sortedArr[i] * 5) + 'px';
       dotHouse.appendChild(aBox);
     }
   }
-
-
+var queuedUp = [];
   var _quickSort = function(arr){
 
     if(!(Array.isArray(arr))){
@@ -76,21 +80,43 @@ var quickSortingApp = (function(){
       }
       else{
         right.push(arr[i]);
-
       }
     }
 
     if(left.length > 1){
-        left = _quickSort(left);
+      queuedUp.push(left)
+      queuedUp.push(pivot)
+      queuedUp.push(right)
+      left = _quickSort(left);
     }
 
     if(right.length > 1){
-        right =   _quickSort(right);
+      queuedUp.push(left)
+      queuedUp.push(pivot)
+      queuedUp.push(right)
+      right = _quickSort(right);
     }
-
+console.log(left.concat(pivot, right));
     return left.concat(pivot, right);
 
   }
+
+function displayQueue(aList){
+console.log('queuedUp', queuedUp);
+
+  for(var i = 0; i < aList.length; i++){
+    console.log(aList[i])
+    for(var j =0; j < aList[i].length; j++){
+      console.log('deeper', document.getElementById('box' + i).style.height)
+      document.getElementById('box' + i).style.height = (j + 'px');
+    }
+
+  }
+
+
+}
+
+
 
   return {
     quickSort : _quickSort
